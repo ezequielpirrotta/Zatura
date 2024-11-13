@@ -400,7 +400,7 @@ namespace Zatura
                     bool anyBulletsAlive = false;
                     for (int i = 0; i < enemies.Length; i++)
                     {
-                        player.CheckBulletCollision(enemies[i]);
+                        bool didDollide = player.CheckBulletCollision(enemies[i]);
                         if (enemies[i].isAlive)
                         {
                             bool nearPlayer = enemies[i].posX <= player.posX + (player.width * 2) && enemies[i].posX >= player.posX - (player.width * 2);
@@ -410,7 +410,7 @@ namespace Zatura
                                 enemies[i].Shoot();
                             }
                         }
-                        else
+                        else if(didDollide)
                         {
                             enemies[i].PlayDeathSound();
                         }
